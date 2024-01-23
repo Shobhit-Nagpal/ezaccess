@@ -1,0 +1,10 @@
+{
+  "version": "1.0.0",
+  "manifest_version": 1,
+  "name": "EZAccess",
+  "description": "Easy access to your data in 2 clicks",
+  "action": {
+    "default_popup": "public/index.html",
+    "default_title": "EZAccess"
+  }
+}

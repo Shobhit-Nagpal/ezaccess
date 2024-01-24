@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Data from "./utils/data";
+import Item from "./components/Item";
+import ItemForm from "./components/ItemForm";
+import { useForm } from "./context/FormContext";
+import { useData } from "./context/DataContext";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { data } = useData();
+
+  const { showForm, setShowForm } = useForm();
+
+  function handleAdd() {
+    setShowForm(!showForm);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="bg-black p-10">
+      {showForm ? (
+        <ItemForm />
+      ) : (
+        <>
+          <div className="flex items-center justify-center">
+            <h1 className="text-white">Details</h1>
+          </div>
+          <div className="flex flex-col gap-5 items-start justify-center">
+            {data.length !== 0 ? (
+              <>
+                {data.map((item: Data) => (
+                  <Item
+                    key={item.id}
+                    id={item.id}
+                    name={item.name}
+                    data={item.data}
+                  />
+                ))}
+              </>
+            ) : (
+              <>
+                <p className="text-white">No data present!</p>
+              </>
+            )}
+          </div>
+          <div>
+            <button
+              className="bg-green-900 text-white p-3 rounded-sm"
+              onClick={() => {
+                handleAdd();
+              }}
+            >
+              Add
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

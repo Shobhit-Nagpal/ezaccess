@@ -5,10 +5,9 @@ import ItemForm from "./components/ItemForm";
 import { useForm } from "./context/FormContext";
 import { useData } from "./context/DataContext";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-
   const { data } = useData();
 
   const { showForm, setShowForm } = useForm();
@@ -18,36 +17,32 @@ function App() {
   }
 
   return (
-    <div className="bg-black p-10">
-    <ToastContainer />
+    <div className="bg-gray-800 p-4 text-white text-sm">
+      <ToastContainer />
       {showForm ? (
         <ItemForm />
       ) : (
         <>
-          <div className="flex items-center justify-center">
-            <h1 className="text-white">Details</h1>
+          <div className="mb-4">
+            <h1 className="text-lg font-semibold text-center">Details</h1>
           </div>
-          <div className="flex flex-col gap-5 items-start justify-center">
+          <div className="flex flex-col gap-3">
             {data.length !== 0 ? (
-              <>
-                {data.map((item: Data) => (
-                  <Item
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    data={item.data}
-                  />
-                ))}
-              </>
+              data.map((item: Data) => (
+                <Item
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  data={item.data}
+                />
+              ))
             ) : (
-              <>
-                <p className="text-white">No data present!</p>
-              </>
+              <p className="text-center">No data present!</p>
             )}
           </div>
-          <div>
+          <div className="mt-4 flex justify-center">
             <button
-              className="bg-green-900 text-white p-3 rounded-sm"
+              className="bg-blue-500 hover:bg-blue-600 text-white font-medium py-1 px-3 rounded transition duration-300 ease-in-out"
               onClick={() => {
                 handleAdd();
               }}

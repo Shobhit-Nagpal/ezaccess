@@ -91,65 +91,75 @@ const Item: React.FC<ItemProps> = ({ id, name, data }) => {
   }
 
   function truncateString(str: string, num: number): string {
-
     if (str.length > num) {
       const displayStr = str.slice(0, num) + "...";
       return displayStr;
     }
 
     return str;
-
   }
 
-  return (
-    <div className="flex items-center justify-between p-2 bg-gray-800 text-white rounded-md">
-      {isEdit ? (
-        <div>
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
-            <label>Name</label>
-            <input
-              type="text"
-              value={editedName}
-              onChange={(e) => setEditedName(e.target.value)}
-              className="p-2 rounded bg-gray-700 text-white"
-              placeholder="Name"
-            />
+return (
+  <div className="flex items-center justify-between p-2 bg-gray-700 text-white rounded-md border border-gray-600 shadow-md">
+    {isEdit ? (
+      <div className="flex-grow">
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
+          <label className="text-sm font-medium text-gray-300">Name</label>
+          <input
+            type="text"
+            value={editedName}
+            onChange={(e) => setEditedName(e.target.value)}
+            className="p-2 rounded bg-gray-600 text-white focus:outline-none focus:ring focus:border-blue-300"
+            placeholder="Name"
+          />
 
-            <label>Data</label>
-            <input
-              type="text"
-              value={editedData}
-              onChange={(e) => setEditedData(e.target.value)}
-              className="p-2 rounded bg-gray-700 text-white"
-              placeholder="Data"
-            />
-            <button
-              type="submit"
-              className="p-2 bg-blue-500 rounded hover:bg-blue-600"
-            >
-              Save
-            </button>
-          </form>
-        </div>
-      ) : (
-        <div>
-          <p className="text-xl font-medium p-3">{truncateString(name, 15)}</p>
-        </div>
-      )}
-
-      <div className="flex items-center space-x-2">
-        <button onClick={handleCopy} className={`p-2 rounded hover:bg-gray-700 ${isEdit ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={isEdit}>
-          <FaRegCopy />
-        </button>
-        <button onClick={onEdit} className="p-2 rounded hover:bg-gray-700">
-          <FaEdit />
-        </button>
-        <button onClick={onDelete} className="p-2 rounded hover:bg-gray-700">
-          <FaTrashAlt />
-        </button>
+          <label className="text-sm font-medium text-gray-300">Data</label>
+          <input
+            type="text"
+            value={editedData}
+            onChange={(e) => setEditedData(e.target.value)}
+            className="p-2 rounded bg-gray-600 text-white focus:outline-none focus:ring focus:border-blue-300"
+            placeholder="Data"
+          />
+          <button
+            type="submit"
+            className="p-2 bg-blue-500 rounded hover:bg-blue-600 text-sm font-medium"
+          >
+            Save
+          </button>
+        </form>
       </div>
+    ) : (
+      <div className="flex-grow">
+        <p className="text-sm font-medium truncate text-gray-300">
+          {truncateString(name, 15)}
+        </p>
+      </div>
+    )}
+
+    <div className="flex items-center space-x-2">
+      <button
+        onClick={handleCopy}
+        className={`p-2 rounded hover:bg-gray-600 text-sm ${isEdit ? "opacity-50 cursor-not-allowed" : ""}`}
+        disabled={isEdit}
+      >
+        <FaRegCopy />
+      </button>
+      <button
+        onClick={onEdit}
+        className="p-2 rounded hover:bg-gray-600 text-sm"
+      >
+        <FaEdit />
+      </button>
+      <button
+        onClick={onDelete}
+        className="p-2 rounded hover:bg-gray-600 text-sm"
+      >
+        <FaTrashAlt />
+      </button>
     </div>
-  );
+  </div>
+);
 };
 
 export default Item;

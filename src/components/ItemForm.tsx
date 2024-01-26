@@ -70,11 +70,11 @@ function ItemForm() {
           setData("");
           setShowForm(false);
         }}
-        className="absolute top-0 right-0 mt-2 mr-2 text-gray-800 hover:text-gray-600"
+        className="absolute top-0 right-0 mt-2 mr-2 text-white hover:text-gray-600"
       >
         <FaTimes size={20} />
       </button>
-      <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+      <h1 className="text-2xl text-white font-bold text-center mb-6">
         Add data
       </h1>
       <form

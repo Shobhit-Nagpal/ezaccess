@@ -4,6 +4,8 @@ import Item from "./components/Item";
 import ItemForm from "./components/ItemForm";
 import { useForm } from "./context/FormContext";
 import { useData } from "./context/DataContext";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const { data } = useData();
@@ -16,6 +18,7 @@ function App() {
 
   return (
     <div className="bg-black p-10">
+    <ToastContainer />
       {showForm ? (
         <ItemForm />
       ) : (

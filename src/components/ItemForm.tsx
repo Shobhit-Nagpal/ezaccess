@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "../context/FormContext";
 import { FaTimes } from "react-icons/fa";
 import { useData } from "../context/DataContext";
+import { Flip, toast } from "react-toastify";
 
 function ItemForm() {
   const [name, setName] = useState("");
@@ -13,10 +14,52 @@ function ItemForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (name === "") {
+      toast.error("Name cannot be empty", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Flip,
+      });
+      return;
+    }
+
+    if (data === "") {
+      toast.error("Data cannot be empty", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Flip,
+      });
+      return;
+    }
+
     handleInsert(name, data);
     setName("");
     setData("");
     setShowForm(false);
+    toast.success("Added successfully!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      transition: Flip,
+    });
   };
 
   return (

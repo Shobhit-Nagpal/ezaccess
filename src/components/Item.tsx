@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaRegCopy, FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useData } from "../context/DataContext";
+import { Flip, toast } from "react-toastify";
 
 interface ItemProps {
   id: string;
@@ -13,18 +14,69 @@ const Item: React.FC<ItemProps> = ({ id, name, data }) => {
   const [itemId, setId] = useState(id);
   const [editedName, setEditedName] = useState(name);
   const [editedData, setEditedData] = useState(data);
-
   const { handleUpdate, handleDelete } = useData();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (editedName === "") {
+      toast.error("Name cannot be empty", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Flip,
+      });
+      return;
+    }
+
+    if (editedData === "") {
+      toast.error("Data cannot be empty", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Flip,
+      });
+      return;
+    }
+
     handleUpdate(itemId, editedName, editedData);
     setIsEdit(false);
+    toast.success("Updated!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      transition: Flip,
+    });
   }
 
   function handleCopy() {
     // Copy logic
     navigator.clipboard.writeText(data);
+    toast.success("Copied", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+      transition: Flip,
+    });
   }
 
   function onEdit() {
@@ -36,6 +88,17 @@ const Item: React.FC<ItemProps> = ({ id, name, data }) => {
   function onDelete() {
     // Delete logic
     handleDelete(itemId);
+  }
+
+  function truncateString(str: string, num: number): string {
+
+    if (str.length > num) {
+      const displayStr = str.slice(0, num) + "...";
+      return displayStr;
+    }
+
+    return str;
+
   }
 
   return (
@@ -70,12 +133,12 @@ const Item: React.FC<ItemProps> = ({ id, name, data }) => {
         </div>
       ) : (
         <div>
-          <p className="text-xl font-medium p-3">{name}</p>
+          <p className="text-xl font-medium p-3">{truncateString(name, 15)}</p>
         </div>
       )}
 
       <div className="flex items-center space-x-2">
-        <button onClick={handleCopy} className="p-2 rounded hover:bg-gray-700">
+        <button onClick={handleCopy} className={`p-2 rounded hover:bg-gray-700 ${isEdit ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={isEdit}>
           <FaRegCopy />
         </button>
         <button onClick={onEdit} className="p-2 rounded hover:bg-gray-700">

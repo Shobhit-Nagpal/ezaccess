@@ -53,10 +53,10 @@ function DataProvider({children}: DataProviderProps) {
   }
 
   useEffect(() => {
-    const data = localStorage.getItem("data");
+    const data = localStorage.getItem("EZACCESS_DATA");
     if (!data) {
       const items: Data[] = [];
-      localStorage.setItem("data", JSON.stringify(items));
+      localStorage.setItem("EZACCESS_DATA", JSON.stringify(items));
     } else {
       if (JSON.parse(data).length !== 0) {
         setData(JSON.parse(data));

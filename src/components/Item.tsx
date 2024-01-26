@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaRegCopy, FaEdit, FaTrashAlt } from "react-icons/fa";
 import { useData } from "../context/DataContext";
 import { Flip, toast } from "react-toastify";
@@ -11,7 +11,7 @@ interface ItemProps {
 
 const Item: React.FC<ItemProps> = ({ id, name, data }) => {
   const [isEdit, setIsEdit] = useState(false);
-  const [itemId, setId] = useState(id);
+  const [itemId, _] = useState(id);
   const [editedName, setEditedName] = useState(name);
   const [editedData, setEditedData] = useState(data);
   const { handleUpdate, handleDelete } = useData();

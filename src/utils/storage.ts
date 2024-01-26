@@ -30,7 +30,7 @@ export function addData(name: string, data: string): void {
     return;
   }
 
-  const uniqueId = uuid() as string;
+  const uniqueId = uuid();
   const item = {
     id: uniqueId,
     name: name,

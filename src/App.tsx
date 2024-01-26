@@ -1,4 +1,3 @@
-import React from "react";
 import Data from "./utils/data";
 import Item from "./components/Item";
 import ItemForm from "./components/ItemForm";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "../context/FormContext";
 import { FaTimes } from "react-icons/fa";
 import { useData } from "../context/DataContext";

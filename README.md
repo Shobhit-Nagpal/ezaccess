@@ -1,3 +1,11 @@
+# About
+EZAccess is a browser extension to be access your data in 2 clicks.
+
+It's primary purpose is to reduce the effort to fill out data that is repeatedly accessed across various sites.
+For example: LinkedIn, Twitter, GitHub, Email, etc.
+
+Coming out soon.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

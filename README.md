@@ -4,7 +4,14 @@ EZAccess is a browser extension to be access your data in 2 clicks.
 It's primary purpose is to reduce the effort to fill out data that is repeatedly accessed across various sites.
 For example: LinkedIn, Twitter, GitHub, Email, etc.
 
-Coming out soon.
+# Installation
+- Download ezaccess.crx file
+- Go to [Chrome extension](chrome://extensions/)
+- Turn on Developer Mode 
+- Drag the crx file on to the console
+- Press "Add extension" to the notification that pops up
+- Turn off developer mode
+- Pin EZAccess, use it and save your time
 
 # React + TypeScript + Vite
 

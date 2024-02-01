@@ -6,7 +6,7 @@ For example: LinkedIn, Twitter, GitHub, Email, etc.
 
 # Installation
 - Download ezaccess.crx file
-- Go to (chrome://extensions/)
+- Go to [chrome://extensions/](chrome://extensions/)
 - Turn on Developer Mode 
 - Drag the crx file on to the console
 - Press "Add extension" to the notification that pops up
